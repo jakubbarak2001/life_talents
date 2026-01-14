@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Uncial+Antiqua&display=swap');
+
 .talent-grid-journal {
-    position: relative; /* THIS IS THE MOST IMPORTANT LINE */
+    position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(7, 1fr);
@@ -39,30 +41,67 @@
 }
 
 .talent-node:hover {
-    border-color: #ffd100;
     transform: scale(1.05); /* Slight pop on hover */
+    cursor: pointer; /* */
+    
+    /* --- Void Master Colors --- */
+    border-color: #A335EE; /* Official "Epic Purple" border */
+    box-shadow: 0 0 15px rgba(163, 53, 238, 0.6), 
+                inset 0 0 10px rgba(163, 53, 238, 0.4); /* Radiant purple "spell effect" glow */
 }
 
 .rank {
     position: absolute;
-    bottom: -4px;
-    right: -4px;
-    font-size: 12px;
-    color: #ffd100;
+    bottom: -8px; /* Pull it closer to the corner */
+    right: -10px;
+    
+    /* --- The Scaling Fix --- */
+    font-family: 'Cinzel', serif;
+    font-size: 12px; /* Reduced from 12px for Cinzel's larger scale */
+    letter-spacing: 0.5px; /* Tightened from 1px */
+    padding: 0px 3px; /* Minimal padding for a tighter fit */
+    line-height: 1.2; /* Ensures vertical centering */
+    font-weight: 800; /* Extra bold for readability at 10px */
+
     background: #000;
     border: 1px solid #3d3d3d;
-    padding: 1px 4px;
-    font-weight: bold;
+    
+    /* --- Void Master Colors --- */
+    color: #E0E0E0;
+    text-shadow: 0 0 5px #6600CC; /* Slightly reduced blur for smaller text */
+    box-shadow: 0 0 5px rgba(102, 0, 204, 0.5);
+    z-index: 10;
 }
 
-/* Grid Placement - Row / Column */
-.t1-1 { grid-area: 1 / 1; } .t1-3 { grid-area: 1 / 3; }
-.t2-2 { grid-area: 2 / 2; } .t2-4 { grid-area: 2 / 4; }
-.t3-1 { grid-area: 3 / 1; } .t3-3 { grid-area: 4 / 1; }
-.t4-2 { grid-area: 4 / 2; } .t4-4 { grid-area: 4 / 4; }
-.t5-1 { grid-area: 5 / 1; } .t5-3 { grid-area: 5 / 3; }
-.t6-2 { grid-area: 6 / 2; } .t6-4 { grid-area: 6 / 4; }
-.t7-1 { grid-area: 7 / 1; } .t7-3 { grid-area: 7 / 3; }
+/* Individual Node Grid Placement */
+/* Format: .t[Row]-[Column] { grid-row: Row; grid-column: Column; } */
+
+/* Row 1 */
+.t1-1 { grid-row: 1; grid-column: 1; }
+.t1-2 { grid-row: 1; grid-column: 2; }
+.t1-3 { grid-row: 1; grid-column: 3; }
+.t1-4 { grid-row: 1; grid-column: 4; }
+
+/* Row 2 */
+.t2-1 { grid-row: 2; grid-column: 1; }
+.t2-2 { grid-row: 2; grid-column: 2; }
+.t2-3 { grid-row: 2; grid-column: 3; }
+.t2-4 { grid-row: 2; grid-column: 4; }
+
+/* Row 3 */
+.t3-1 { grid-row: 3; grid-column: 1; }
+.t3-2 { grid-row: 3; grid-column: 2; }
+
+/* Row 4 */
+.t4-1 { grid-row: 4; grid-column: 1; }
+.t4-2 { grid-row: 4; grid-column: 2; }
+.t4-4 { grid-row: 4; grid-column: 4; }
+
+/* Row 5 */
+.t5-1 { grid-row: 5; grid-column: 1; }
+
+/* Row 6 */
+.t6-2 { grid-row: 6; grid-column: 2; }
 
 line {
     stroke-width: 4;
@@ -107,3 +146,16 @@ line {
 .t1-2 .icon { background-image: url('talent1-2.png'); } /* The Habit Loop */
 .t1-3 .icon { background-image: url('talent1-3.png'); } /* Mental Declutter */
 .t1-4 .icon { background-image: url('talent1-4.png'); } /* Anxiety Buffer */
+
+.t2-1 .icon { background-image: url('talent2-1.png'); } /* Emotional Processing */
+.t2-2 .icon { background-image: url('talent2-2.png'); } /* Cognitive RAM */
+.t2-3 .icon { background-image: url('talent2-3.png'); } /* Problem Solver */
+.t2-4 .icon { background-image: url('talent2-4.png'); } /* Narrative Resilience */
+.t3-1 .icon { background-image: url('talent3-1.png'); } /* Narrative Resilience */
+.t3-2 .icon { background-image: url('talent3-2.png'); } /* Narrative Resilience */
+.t4-1 .icon { background-image: url('talent4-1.png'); } /* Narrative Resilience */
+.t4-2 .icon { background-image: url('talent4-2.png'); } /* Narrative Resilience */
+.t4-4 .icon { background-image: url('talent4-4.png'); } /* 
+Narrative Resilience */
+.t5-1 .icon { background-image: url('talent5-1.png'); } /* Narrative Resilience */
+.t6-2 .icon { background-image: url('talent6-2.png'); } /* Narrative Resilience */
