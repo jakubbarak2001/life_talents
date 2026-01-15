@@ -29,26 +29,17 @@
     z-index: 0; /* Sits behind the icons */
 }
 
-.talent-node {
-    width: 58px;
-    height: 58px;
-    background-color: #000;
-    border: 2px solid #3d3d3d; 
-    border-radius: 6px;
-    box-shadow: inset 0 0 10px #000, 0 0 5px rgba(0,0,0,0.5);
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.1s ease;
+
+
+.talent-node.learned .icon {
+    filter: grayscale(0%);
+    opacity: 1;
 }
 
-.talent-node:hover {
-    cursor: pointer; /* */
-    z-index: 100;
-    
-    /* --- Void Master Colors --- */
-    border-color: #A335EE; /* Official "Epic Purple" border */
+.talent-node.learned {
+    border-color: #A335EE;
     box-shadow: 0 0 15px rgba(163, 53, 238, 0.6), 
-                inset 0 0 10px rgba(163, 53, 238, 0.4); /* Radiant purple "spell effect" glow */
+                inset 0 0 10px rgba(163, 53, 238, 0.4); 
 }
 
 .tooltip {
@@ -56,10 +47,9 @@
     position: absolute;
     bottom: 100%; 
     left: 50%;
-    transform: translateX(10%);
+    transform: translateX(11%);
     width: 330px; 
     height: auto;
-    min-height: 140px;
     background-color: rgba(7, 7, 7, 0.9);
     padding: 10px;
     border-radius: 2px; 
@@ -97,6 +87,16 @@
     font-size: 11px;
     font-weight: bold;
     text-align: left;
+}
+
+/* In style.css */
+.unlearn-text {
+    display: block;
+    color: #ff4444; /* A nice red color */
+    font-size: 11px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 5px;
 }
 
 /* Scientific Summary Styling */
@@ -191,10 +191,56 @@ line {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* Keeps them grayscale and dim until learned/hovered */
-    filter: grayscale(100%);
-    opacity: 0.6;
+    /* Accessible nodes are colorful by default */
+    filter: grayscale(0%) brightness(100%); 
+    opacity: 1; 
     transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.talent-node {
+    width: 58px;
+    height: 58px;
+    background-color: #000;
+    border: 2px solid #3d3d3d; /* Default dark border */
+    border-radius: 6px;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* --- Hover Effect: Border Only --- */
+.talent-node:hover {
+    z-index: 100;
+    border-color: #A335EE; /* "Epic Purple" border on hover */
+    box-shadow: 0 0 15px rgba(163, 53, 238, 0.6); /* Purple glow */
+}
+
+/* --- Locked State --- */
+.talent-node.locked .learn-text {
+    display: none;
+}
+
+.talent-node.locked:hover {
+    border-color: #000000dd;
+    border-color: #000000;
+    box-shadow: 0 0 15px rgba(163, 53, 238, 0.6);
+}
+
+/* We target the icon INSIDE a locked node explicitly */
+.talent-node.locked .icon {
+    filter: grayscale(100%)!important; 
+    opacity: 0.4;
+}
+
+.talent-node.locked .rank {
+    color: #444 !important; /* Make the 0/3 numbers very dark */
+}
+
+/* --- Learned State: Permanent colorful border once points are spent --- */
+.talent-node.learned {
+    border-color: #ffd100 !important; 
+    box-shadow: 0 0 10px rgba(255, 209, 0, 0.5),
+                inset 0 0 10px rgba(255, 209, 0, 0.3) !important;
 }
 
 /* Hover Effect to preview the "Learned" state */
