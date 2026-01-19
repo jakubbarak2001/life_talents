@@ -6,7 +6,6 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(7, 1fr);
     column-gap: 30px; 
-    row-gap: 20px;
     width: 450px; 
     height: 750px;
     padding: 50px 40px; 
@@ -14,9 +13,42 @@
     background-size: cover;
     background-position: center 20%;
     border: 4px solid #1a1a1a;
-    box-sizing: border-box; /* Ensures padding doesn't break the 450px width */
-    margin: 0 auto; /* Keeps the whole tree centered on your screen */
-    margin-top: 100px;
+    box-sizing: border-box;
+}
+
+.talent-header {
+    background-color: black;
+    color: rgb(212, 212, 212);
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    width: 450px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.talent-header-text {
+    padding-left: 15px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.talent-header-image {
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #3d3d3d;
+    background-color: #000;
+    
+    /* Displaying the talent-header-spec image */
+    background-image: url('talent-header-spec.png');
+    background-size: cover;
+    background-position: center;
+    
+    flex-shrink: 0; /* Prevents the circle from squishing if text is long */
 }
 
 .talent-lines {
@@ -26,7 +58,7 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 0; /* Sits behind the icons */
+    z-index: 0;
 }
 
 
@@ -102,9 +134,9 @@
 /* Scientific Summary Styling */
 .science-text {
     display: block;
-    font-family: 'Cinzel', serif; /* Keeps the fantasy feel but can use sans-serif for more 'tech' feel */
+    font-family: 'Cinzel', serif;
     font-style: italic;
-    color: #a2d2ff; /* Lighter scientific blue */
+    color: #a2d2ff;
     font-size: 10.5px;
     line-height: 1.3;
     margin-top: 8px;
@@ -215,32 +247,32 @@ line {
     box-shadow: 0 0 15px rgba(163, 53, 238, 0.6); /* Purple glow */
 }
 
-/* --- Locked State --- */
+/* Locked State */
 .talent-node.locked .learn-text {
     display: none;
 }
 
 .talent-node.locked:hover {
-    border-color: #000000dd;
-    border-color: #000000;
+    background-color: #000;
+    border: 2px solid #3d3d3d; 
     box-shadow: 0 0 15px rgba(163, 53, 238, 0.6);
 }
 
 /* We target the icon INSIDE a locked node explicitly */
 .talent-node.locked .icon {
-    filter: grayscale(100%)!important; 
+    filter: grayscale(100%); 
     opacity: 0.4;
 }
 
 .talent-node.locked .rank {
-    color: #444 !important; /* Make the 0/3 numbers very dark */
+    color: #444; 
 }
 
-/* --- Learned State: Permanent colorful border once points are spent --- */
+/* Learned State: Permanent colorful border once points are spent*/
 .talent-node.learned {
-    border-color: #ffd100 !important; 
+    border-color: #ffd100; 
     box-shadow: 0 0 10px rgba(255, 209, 0, 0.5),
-                inset 0 0 10px rgba(255, 209, 0, 0.3) !important;
+                inset 0 0 10px rgba(255, 209, 0, 0.3);
 }
 
 /* Hover Effect to preview the "Learned" state */
@@ -249,8 +281,8 @@ line {
     opacity: 1;
 }
 
-/* Individual Icon Assignments */
-/* Individual Icon Assignments */
+
+/* Background image of individual icon assignment */
 .t1-1 .icon { background-image: url('talent1-1.png'); } /* Improved Vocabulary */
 .t1-2 .icon { background-image: url('talent1-2.png'); } /* The Habit Loop */
 .t1-3 .icon { background-image: url('talent1-3.png'); } /* Mental Declutter */
@@ -260,11 +292,10 @@ line {
 .t2-2 .icon { background-image: url('talent2-2.png'); } /* Cognitive RAM */
 .t2-3 .icon { background-image: url('talent2-3.png'); } /* Problem Solver */
 .t2-4 .icon { background-image: url('talent2-4.png'); } /* Narrative Resilience */
-.t3-1 .icon { background-image: url('talent3-1.png'); } /* Narrative Resilience */
-.t3-2 .icon { background-image: url('talent3-2.png'); } /* Narrative Resilience */
-.t4-1 .icon { background-image: url('talent4-1.png'); } /* Narrative Resilience */
-.t4-2 .icon { background-image: url('talent4-2.png'); } /* Narrative Resilience */
-.t4-4 .icon { background-image: url('talent4-4.png'); } /* 
-Narrative Resilience */
-.t5-1 .icon { background-image: url('talent5-1.png'); } /* Narrative Resilience */
-.t6-2 .icon { background-image: url('talent6-2.png'); } /* Narrative Resilience */
+.t3-1 .icon { background-image: url('talent3-1.png'); } /* Pattern seeker */
+.t3-2 .icon { background-image: url('talent3-2.png'); } /* Gratitude Resilience */
+.t4-1 .icon { background-image: url('talent4-1.png'); } /* Insight synthesis */
+.t4-2 .icon { background-image: url('talent4-2.png'); } /* Trauma integration */
+.t4-4 .icon { background-image: url('talent4-4.png'); } /* Perspective shift*/
+.t5-1 .icon { background-image: url('talent5-1.png'); } /* Mindfull awareness */
+.t6-2 .icon { background-image: url('talent6-2.png'); } /* Architect of the ascended self */
