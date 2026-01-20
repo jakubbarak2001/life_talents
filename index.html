@@ -187,8 +187,26 @@
     </div>
     </section>
 </article>
-
     <script>
+        async function fetchTalentData() {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/talents');
+        if (!response.ok) {
+            throw new Error('Kitchen is not responding!');
+        }
+        const data = await response.json();
+        console.log("Data received from Kitchen:", data);
+
+        // For now, we just log it to prove the connection works.
+        return data;
+    } catch (error) {
+        console.error("Connection failed:", error);
+    }
+}
+
+// Call the function to test the connection immediately
+fetchTalentData();
+
         document.querySelectorAll('.talent-node').forEach(node => {
             node.addEventListener('click', () => {
                 if (node.classList.contains('locked')) return;

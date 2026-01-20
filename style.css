@@ -42,13 +42,10 @@
     border-radius: 50%;
     border: 1px solid #3d3d3d;
     background-color: #000;
-    
-    /* Displaying the talent-header-spec image */
-    background-image: url('talent-header-spec.png');
+    background-image: url('talent-header-spec-journaling.png');
     background-size: cover;
     background-position: center;
-    
-    flex-shrink: 0; /* Prevents the circle from squishing if text is long */
+    flex-shrink: 0;
 }
 
 .talent-lines {
