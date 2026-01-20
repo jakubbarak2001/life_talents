@@ -11,7 +11,8 @@ def create_tables():
         CREATE TABLE IF NOT EXISTS talents (
             id TEXT PRIMARY KEY,
             name TEXT NOT NULL,
-            max_rank INTEGER NOT NULL
+            max_rank INTEGER NOT NULL,
+            current_rank INTEGER DEFAULT 0  -- Make sure this line is here!
         )
     ''')
     conn.commit()
