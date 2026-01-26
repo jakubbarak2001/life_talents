@@ -28,7 +28,8 @@ def get_talents():
     for row in rows:
         talents_dict[row['id']] = {
             "name": row['name'],
-            "max_rank": row['max_rank']
+            "max_rank": row['max_rank'],
+            "current_rank": row['current_rank']
         }
 
     return talents_dict
