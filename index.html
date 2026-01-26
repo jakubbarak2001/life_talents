@@ -7,105 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <article>
-        <header class="talent-header">
-            <div class="talent-header-image"></div>
-            <div class="talent-header-text">Journaling</div>
-        </header>
-        <section>
-            <div class="talent-grid-journal" id="talent-grid">
-                <svg class="talent-lines" viewBox="0 0 450 750">
-                    <line x1="375" y1="184" x2="375" y2="375" class="line-locked" />
-                    <line x1="75" y1="375" x2="75" y2="471" class="line-locked" />
-                    <line x1="175" y1="375" x2="175" y2="566" class="line-locked" />
-                </svg>
-            </div>
-        </section>
-    </article>
+    <div class="talent-grid-journal">
+<svg class="talent-lines" viewBox="0 0 450 750">
+    <line x1="375" y1="184" x2="375" y2="375" class="line-locked" />
 
-    <script>
-        // 1. Fetch data from your FastAPI Kitchen
-        async function fetchTalentData() {
-            try {
-                const response = await fetch('http://127.0.0.1:8000/api/talents');
-                if (!response.ok) throw new Error('Kitchen is not responding!');
-                return await response.json();
-            } catch (error) {
-                console.error("Connection failed:", error);
-                return null;
-            }
-        }
+    <line x1="75" y1="375" x2="75" y2="471" class="line-locked" />
 
-        // 2. Dynamically build the tree
-        async function renderTalentTree() {
-            const talents = await fetchTalentData();
-            if (!talents) return;
+    <line x1="175" y1="375" x2="175" y2="566" class="line-locked" />
+</svg>
+        
+        <div class="talent-node t1-1"><div class="icon"></div><span class="rank">0/5</span></div>
+        <div class="talent-node t1-2"><div class="icon"></div><span class="rank">0/3</span></div>
+        <div class="talent-node t1-3"><div class="icon"></div><span class="rank">0/5</span></div>
+        <div class="talent-node t1-4"><div class="icon"></div><span class="rank">0/3</span></div>
 
-            const grid = document.getElementById('talent-grid');
-
-            // Loop through the database results
-            for (const [id, info] of Object.entries(talents)) {
-                const node = document.createElement('div');
-                // Use the ID from the database (t1-1, etc.) to apply your CSS grid positioning
-                node.className = `talent-node ${id} locked`;
-                node.setAttribute('data-current', 0);
-                node.setAttribute('data-max', info.max_rank);
-
-                node.innerHTML = `
-                    <div class="icon"></div>
-                    <span class="rank">0/${info.max_rank}</span>
-                    <div class="tooltip">
-                        <h3>${info.name}</h3>
-                        <p>Loading description...</p>
-                        <span class="learn-text">Click to learn</span>
-                        <span class="unlearn-text" style="display: none;">Right click to unlearn</span>
-                    </div>
-                `;
-
-                // Add click listener for the "Kitchen" order
-                node.addEventListener('click', () => handleLearnTalent(id, node));
-
-                grid.appendChild(node);
-            }
-
-            checkUnlocks(); // Initialize the locking logic
-        }
-
-        // 3. Handle the "Learn" logic by talking to the backend
-        async function handleLearnTalent(id, node) {
-            // This is where we will eventually send a POST request to the backend
-            // For now, it updates locally so you can see it working
-            let current = parseInt(node.getAttribute('data-current'));
-            let max = parseInt(node.getAttribute('data-max'));
-
-            if (current < max) {
-                current++;
-                node.setAttribute('data-current', current);
-                node.querySelector('.rank').innerText = `${current}/${max}`;
-                node.classList.add('learned');
-                checkUnlocks();
-            }
-        }
-
-        // 4. Your original logic for row unlocking
-        function checkUnlocks() {
-            let totalSpent = 0;
-            document.querySelectorAll('.talent-node').forEach(n => {
-                totalSpent += parseInt(n.getAttribute('data-current'));
-            });
-
-            const rowThresholds = { 't1': 0, 't2': 5, 't3': 10, 't4': 15, 't5': 20, 't6': 25 };
-
-            document.querySelectorAll('.talent-node').forEach(node => {
-                const rowClass = node.classList[1].substring(0, 2);
-                if (totalSpent >= rowThresholds[rowClass]) {
-                    node.classList.remove('locked');
-                }
-            });
-        }
-
-        // Start the process
-        renderTalentTree();
-    </script>
+        <div class="talent-node t2-3"><div class="icon"></div><span class="rank">0/3</span></div>
+        <div class="talent-node t2-3"><div class="icon"></div><span class="rank">0/3</span></div>
+        <div class="talent-node t2-3"><div class="icon"></div><span class="rank">0/3</span></div>
+        <div class="talent-node t2-3"><div class="icon"></div><span class="rank">0/3</span></div>
+    </div>
 </body>
 </html>

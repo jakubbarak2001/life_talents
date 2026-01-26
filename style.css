@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Uncial+Antiqua&display=swap');
-
 .talent-grid-journal {
     position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(7, 1fr);
     column-gap: 30px; 
+    row-gap: 20px;
     width: 450px; 
     height: 750px;
     padding: 50px 40px; 
@@ -13,39 +12,8 @@
     background-size: cover;
     background-position: center 20%;
     border: 4px solid #1a1a1a;
-    box-sizing: border-box;
-}
-
-.talent-header {
-    background-color: black;
-    color: rgb(212, 212, 212);
-    font-family: 'Cinzel', serif;
-    font-weight: bold;
-    width: 450px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    box-sizing: border-box;
-}
-
-.talent-header-text {
-    padding-left: 15px;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.talent-header-image {
-    width: 50px; 
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid #3d3d3d;
-    background-color: #000;
-    background-image: url('talent-header-spec-journaling.png');
-    background-size: cover;
-    background-position: center;
-    flex-shrink: 0;
+    box-sizing: border-box; /* Ensures padding doesn't break the 450px width */
+    margin: 0 auto; /* Keeps the whole tree centered on your screen */
 }
 
 .talent-lines {
@@ -55,145 +23,41 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 0;
+    z-index: 0; /* Sits behind the icons */
 }
 
-
-
-.talent-node.learned .icon {
-    filter: grayscale(0%);
-    opacity: 1;
+.talent-node {
+    width: 58px; /* Increased from 44px to look more heroic */
+    height: 58px;
+    background-color: #000;
+    border: 2px solid #3d3d3d; /* Darker grey border for 'unspent' */
+    border-radius: 6px;
+    box-shadow: inset 0 0 10px #000, 0 0 5px rgba(0,0,0,0.5);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.1s ease;
 }
 
-.talent-node.learned {
-    border-color: #A335EE;
-    box-shadow: 0 0 15px rgba(163, 53, 238, 0.6), 
-                inset 0 0 10px rgba(163, 53, 238, 0.4); 
-}
-
-.tooltip {
-    display: none;
-    position: absolute;
-    bottom: 100%; 
-    left: 50%;
-    transform: translateX(11%);
-    width: 330px; 
-    height: auto;
-    background-color: rgba(7, 7, 7, 0.9);
-    padding: 10px;
-    border-radius: 2px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); 
-    z-index: 100;
-    pointer-events: none;
-}
-
-.talent-node:hover .tooltip {
-    display: block;
-}
-
-/* Title Color (WoW Gold) */
-.tooltip h3 {
-    font-family: 'Cinzel', serif;
-    color: #ffd100; 
-    font-size: 14px;
-    margin: 0 0 5px 0;
-    font-weight: bold;
-}
-
-/* Description Color (Clean White) */
-.tooltip p {
-    font-family: sans-serif;
-    color: #ffffff;
-    font-size: 12px;
-    line-height: 1.4;
-    margin: 0 0 10px 0;
-}
-
-/* "Click to learn" text (WoW Green) */
-.learn-text {
-    display: block;
-    color: #1eff00; /* Standard green for interactive text */
-    font-size: 11px;
-    font-weight: bold;
-    text-align: left;
-}
-
-/* In style.css */
-.unlearn-text {
-    display: block;
-    color: #ff4444; /* A nice red color */
-    font-size: 11px;
-    font-weight: bold;
-    text-align: left;
-    margin-top: 5px;
-}
-
-/* Scientific Summary Styling */
-.science-text {
-    display: block;
-    font-family: 'Cinzel', serif;
-    font-style: italic;
-    color: #a2d2ff;
-    font-size: 10.5px;
-    line-height: 1.3;
-    margin-top: 8px;
-    margin-bottom: 10px;
-    border-top: 1px solid rgba(162, 210, 255, 0.2); /* Subtle divider */
-    padding-top: 8px;
+.talent-node:hover {
+    border-color: #ffd100;
+    transform: scale(1.05); /* Slight pop on hover */
 }
 
 .rank {
     position: absolute;
-    bottom: -8px; /* Pull it closer to the corner */
-    right: -10px;
-    
-    /* --- The Scaling Fix --- */
-    font-family: 'Cinzel', serif;
-    font-size: 12px; /* Reduced from 12px for Cinzel's larger scale */
-    letter-spacing: 0.5px; /* Tightened from 1px */
-    padding: 0px 3px; /* Minimal padding for a tighter fit */
-    line-height: 1.2; /* Ensures vertical centering */
-    font-weight: 800; /* Extra bold for readability at 10px */
-
+    bottom: -4px;
+    right: -4px;
+    font-size: 12px;
+    color: #ffd100;
     background: #000;
     border: 1px solid #3d3d3d;
-    
-    /* --- Void Master Colors --- */
-    color: #E0E0E0;
-    text-shadow: 0 0 5px #6600CC; /* Slightly reduced blur for smaller text */
-    box-shadow: 0 0 5px rgba(102, 0, 204, 0.5);
-    z-index: 10;
+    padding: 1px 4px;
+    font-weight: bold;
 }
 
-/* Individual Node Grid Placement */
-/* Format: .t[Row]-[Column] { grid-row: Row; grid-column: Column; } */
-
-/* Row 1 */
-.t1-1 { grid-row: 1; grid-column: 1; }
-.t1-2 { grid-row: 1; grid-column: 2; }
-.t1-3 { grid-row: 1; grid-column: 3; }
-.t1-4 { grid-row: 1; grid-column: 4; }
-
-/* Row 2 */
-.t2-1 { grid-row: 2; grid-column: 1; }
-.t2-2 { grid-row: 2; grid-column: 2; }
-.t2-3 { grid-row: 2; grid-column: 3; }
-.t2-4 { grid-row: 2; grid-column: 4; }
-
-/* Row 3 */
-.t3-1 { grid-row: 3; grid-column: 1; }
-.t3-2 { grid-row: 3; grid-column: 2; }
-
-/* Row 4 */
-.t4-1 { grid-row: 4; grid-column: 1; }
-.t4-2 { grid-row: 4; grid-column: 2; }
-.t4-4 { grid-row: 4; grid-column: 4; }
-
-/* Row 5 */
-.t5-1 { grid-row: 5; grid-column: 1; }
-
-/* Row 6 */
-.t6-2 { grid-row: 6; grid-column: 2; }
+/* Grid Placement - Row / Column */
+.t1-1 { grid-area: 1 / 1; } .t1-2 { grid-area: 1 / 2; } .t1-3 { grid-area: 1 / 3; } .t1-4 { grid-area: 1 / 4; }
+.t2-1 { grid-area: 2 / 1; } .t2-2 { grid-area: 2 / 2; } .t2-3 { grid-area: 2 / 3; } .t2-4 { grid-area: 2 / 4; }
 
 line {
     stroke-width: 4;
@@ -220,56 +84,10 @@ line {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* Accessible nodes are colorful by default */
-    filter: grayscale(0%) brightness(100%); 
-    opacity: 1; 
+    /* Keeps them grayscale and dim until learned/hovered */
+    filter: grayscale(100%);
+    opacity: 0.6;
     transition: filter 0.3s ease, opacity 0.3s ease;
-}
-
-.talent-node {
-    width: 58px;
-    height: 58px;
-    background-color: #000;
-    border: 2px solid #3d3d3d; /* Default dark border */
-    border-radius: 6px;
-    position: relative;
-    cursor: pointer;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* --- Hover Effect: Border Only --- */
-.talent-node:hover {
-    z-index: 100;
-    border-color: #A335EE; /* "Epic Purple" border on hover */
-    box-shadow: 0 0 15px rgba(163, 53, 238, 0.6); /* Purple glow */
-}
-
-/* Locked State */
-.talent-node.locked .learn-text {
-    display: none;
-}
-
-.talent-node.locked:hover {
-    background-color: #000;
-    border: 2px solid #3d3d3d; 
-    box-shadow: 0 0 15px rgba(163, 53, 238, 0.6);
-}
-
-/* We target the icon INSIDE a locked node explicitly */
-.talent-node.locked .icon {
-    filter: grayscale(100%); 
-    opacity: 0.4;
-}
-
-.talent-node.locked .rank {
-    color: #444; 
-}
-
-/* Learned State: Permanent colorful border once points are spent*/
-.talent-node.learned {
-    border-color: #ffd100; 
-    box-shadow: 0 0 10px rgba(255, 209, 0, 0.5),
-                inset 0 0 10px rgba(255, 209, 0, 0.3);
 }
 
 /* Hover Effect to preview the "Learned" state */
@@ -278,21 +96,14 @@ line {
     opacity: 1;
 }
 
-
-/* Background image of individual icon assignment */
+/* Individual Icon Assignments */
+/* Individual Icon Assignments */
 .t1-1 .icon { background-image: url('talent1-1.png'); } /* Improved Vocabulary */
 .t1-2 .icon { background-image: url('talent1-2.png'); } /* The Habit Loop */
 .t1-3 .icon { background-image: url('talent1-3.png'); } /* Mental Declutter */
 .t1-4 .icon { background-image: url('talent1-4.png'); } /* Anxiety Buffer */
 
-.t2-1 .icon { background-image: url('talent2-1.png'); } /* Emotional Processing */
-.t2-2 .icon { background-image: url('talent2-2.png'); } /* Cognitive RAM */
-.t2-3 .icon { background-image: url('talent2-3.png'); } /* Problem Solver */
-.t2-4 .icon { background-image: url('talent2-4.png'); } /* Narrative Resilience */
-.t3-1 .icon { background-image: url('talent3-1.png'); } /* Pattern seeker */
-.t3-2 .icon { background-image: url('talent3-2.png'); } /* Gratitude Resilience */
-.t4-1 .icon { background-image: url('talent4-1.png'); } /* Insight synthesis */
-.t4-2 .icon { background-image: url('talent4-2.png'); } /* Trauma integration */
-.t4-4 .icon { background-image: url('talent4-4.png'); } /* Perspective shift*/
-.t5-1 .icon { background-image: url('talent5-1.png'); } /* Mindfull awareness */
-.t6-2 .icon { background-image: url('talent6-2.png'); } /* Architect of the ascended self */
+.t2-1 .icon { background-image: url('talent2-1.png'); } /* Improved Vocabulary */
+.t2-2 .icon { background-image: url('talent2-2.png'); } /* The Habit Loop */
+.t2-3 .icon { background-image: url('talent2-3.png'); } /* Mental Declutter */
+.t2-4 .icon { background-image: url('talent2-4.png'); } /* Anxiety Buffer */

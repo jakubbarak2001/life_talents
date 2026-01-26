@@ -1,7 +1,9 @@
 """
-TDD: Failing test for GET /api/talents returning current_rank.
-Run from project root: python -m pytest testing/ -v
-Or from backend (so DB is found): pytest ../testing/ -v
+TDD: Passing test for GET /api/talents returning current_rank.
+Run from backend with the venv (DB must be in cwd):
+  .\\venv\\Scripts\\Activate.ps1
+  python -m pytest ../testing/test_talents_api.py -v
+Or use venv Python directly: .\\venv\\Scripts\\python.exe -m pytest ../testing/ -v
 """
 import sys
 from pathlib import Path
