@@ -1,12 +1,10 @@
-from database import get_db_connection
+from database import get_db_connection, create_tables
 
 
 def seed_talents():
-    # 1. Establish the connection to your pantry
+    create_tables()  # ensure the table exists (no-op if it already does)
     conn = get_db_connection()
 
-    # 2. Complete list of all talents from your original HTML design
-    # Format: (ID, Name, Max Rank, Starting Rank)
     initial_talents = [
         # Row 1
         ('t1-1', 'Improved Vocabulary', 5, 0),
@@ -36,19 +34,17 @@ def seed_talents():
         ('t6-2', 'Architect of the Ascended Self', 1, 0)
     ]
 
-    print("Stocking the pantry with talents...")
+    print("Stocking the database with talents...")
 
-    # 3. RAW SQL: Use 'INSERT OR IGNORE' so you can run this multiple times
-    # without creating duplicates if the ID already exists.
     conn.executemany('''
-        INSERT OR IGNORE INTO talents (id, name, max_rank, current_rank) 
+        INSERT INTO talents (id, name, max_rank, current_rank) 
         VALUES (?, ?, ?, ?)
+        ON CONFLICT(id) DO UPDATE SET name=excluded.name, max_rank=excluded.max_rank
     ''', initial_talents)
 
-    # 4. Save changes and close the kitchen door
     conn.commit()
     conn.close()
-    print("Pantry is fully stocked! Your database is ready.")
+    print("Database is fully stocked! Your database is ready.")
 
 
 if __name__ == "__main__":
