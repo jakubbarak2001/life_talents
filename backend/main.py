@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from database import get_db_connection  # Import your new connection tool
 
@@ -33,3 +33,39 @@ def get_talents():
         }
 
     return talents_dict
+
+
+@app.patch("/api/talents/{talent_id}")
+def update_talent_rank(talent_id: str):
+    """
+    Increment a talent's current_rank by 1, up to its max_rank.
+    Returns the updated talent record.
+    """
+    conn = get_db_connection()
+    cursor = conn.execute("SELECT * FROM talents WHERE id = ?", (talent_id,))
+    row = cursor.fetchone()
+
+    if row is None:
+        conn.close()
+        raise HTTPException(status_code=404, detail="Talent not found")
+
+    current_rank = row["current_rank"]
+    max_rank = row["max_rank"]
+
+    if current_rank < max_rank:
+        current_rank += 1
+        conn.execute(
+            "UPDATE talents SET current_rank = ? WHERE id = ?",
+            (current_rank, talent_id),
+        )
+        conn.commit()
+
+    updated = {
+        "id": talent_id,
+        "name": row["name"],
+        "max_rank": max_rank,
+        "current_rank": current_rank,
+    }
+
+    conn.close()
+    return updated
