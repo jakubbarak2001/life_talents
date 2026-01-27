@@ -58,6 +58,10 @@
 /* Grid Placement - Row / Column */
 .t1-1 { grid-area: 1 / 1; } .t1-2 { grid-area: 1 / 2; } .t1-3 { grid-area: 1 / 3; } .t1-4 { grid-area: 1 / 4; }
 .t2-1 { grid-area: 2 / 1; } .t2-2 { grid-area: 2 / 2; } .t2-3 { grid-area: 2 / 3; } .t2-4 { grid-area: 2 / 4; }
+.t3-1 { grid-area: 3 / 1; } .t3-2 { grid-area: 3 / 2; }
+.t4-1 { grid-area: 4 / 1; } .t4-2 { grid-area: 4 / 2; } .t4-4 { grid-area: 4 / 4; }
+.t5-1 { grid-area: 5 / 1; }
+.t6-2 { grid-area: 6 / 2; }
 
 line {
     stroke-width: 4;
@@ -107,3 +111,11 @@ line {
 .t2-2 .icon { background-image: url('talent2-2.png'); } /* The Habit Loop */
 .t2-3 .icon { background-image: url('talent2-3.png'); } /* Mental Declutter */
 .t2-4 .icon { background-image: url('talent2-4.png'); } /* Anxiety Buffer */
+
+.t3-1 .icon { background-image: url('talent3-1.png'); }
+.t3-2 .icon { background-image: url('talent3-2.png'); }
+.t4-1 .icon { background-image: url('talent4-1.png'); }
+.t4-2 .icon { background-image: url('talent4-2.png'); }
+.t4-4 .icon { background-image: url('talent4-4.png'); }
+.t5-1 .icon { background-image: url('talent5-1.png'); }
+.t6-2 .icon { background-image: url('talent6-2.png'); }
